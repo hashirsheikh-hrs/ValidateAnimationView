@@ -25,22 +25,23 @@ class ValidationAnimView : View {
 
     private var lastState = STATE.CLEAR
 
-    private var typingState = false
+    var typingState = false
+       set(value) {
+            refreshDrawableState()
+            field = value
+        }
+
+    var validState = false
         set(value) {
             refreshDrawableState()
             field = value
         }
-    private var validState = false
+    var invalidState = false
         set(value) {
             refreshDrawableState()
             field = value
         }
-    private var invalidState = false
-        set(value) {
-            refreshDrawableState()
-            field = value
-        }
-    private var clearState = true
+    var clearState = true
         set(value) {
             refreshDrawableState()
             field = value
