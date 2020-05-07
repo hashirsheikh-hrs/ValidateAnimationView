@@ -21,5 +21,4 @@ class MainActivity : AppCompatActivity() {
 //        binding.validAnimView.invalidState = true //when show invalid animation
 //        binding.validAnimView.clearState = true //when want to clear the animation
     }
-
 }
