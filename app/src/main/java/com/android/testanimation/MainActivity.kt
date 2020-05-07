@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.validAnimView.setUpWithEditText(binding.inputField1, Patterns.PHONE.toString())
+        binding.validAnimView.setUpWithEditText(binding.inputField1, Patterns.EMAIL_ADDRESS.toString())
     }
 
 }
