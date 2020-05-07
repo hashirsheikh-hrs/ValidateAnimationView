@@ -1,0 +1,96 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="32"
+    android:viewportHeight="32">
+    <group android:name="elements"
+        android:pivotX="16"
+        android:pivotY="16">
+        <group
+            android:name="ele_1"
+            android:pivotX="16"
+            android:pivotY="16">
+            <path
+                android:fillColor="@color/colorPrimary"
+                android:pathData="M8.752,16a7.248,7.2207 0,1 0,14.4959 0a7.248,7.2207 0,1 0,-14.4959 0z"
+                android:strokeColor="@color/colorPrimary" />
+        </group>
+
+        <group
+            android:name="ele_2"
+            android:pivotX="16"
+            android:pivotY="16">
+            <path
+                android:fillColor="@color/colorPrimary"
+                android:pathData="M8.752,16a7.248,7.2207 0,1 0,14.4959 0a7.248,7.2207 0,1 0,-14.4959 0z"
+                android:strokeWidth="1"
+                android:strokeColor="@color/colorPrimary" />
+        </group>
+
+        <group
+            android:name="ele_3"
+            android:pivotX="16"
+            android:pivotY="16">
+            <path
+                android:fillColor="@color/colorPrimary"
+                android:pathData="M8.752,16a7.248,7.2207 0,1 0,14.4959 0a7.248,7.2207 0,1 0,-14.4959 0z"
+                android:strokeWidth="1"
+                android:strokeColor="@color/colorPrimary" />
+        </group>
+
+        <group
+            android:name="ele_4"
+            android:pivotX="16"
+            android:pivotY="16">
+            <path
+                android:fillColor="@color/colorPrimary"
+                android:pathData="M8.752,16a7.248,7.2207 0,1 0,14.4959 0a7.248,7.2207 0,1 0,-14.4959 0z"
+                android:strokeWidth="1"
+                android:strokeColor="@color/colorPrimary" />
+        </group>
+
+        <group
+            android:name="ele_5"
+            android:pivotX="16"
+            android:pivotY="16">
+            <path
+                android:fillColor="@color/colorPrimary"
+                android:pathData="M8.752,16a7.248,7.2207 0,1 0,14.4959 0a7.248,7.2207 0,1 0,-14.4959 0z"
+                android:strokeWidth="1"
+                android:strokeColor="@color/colorPrimary" />
+        </group>
+
+        <group
+            android:name="ele_6"
+            android:pivotX="16"
+            android:pivotY="16">
+            <path
+                android:fillColor="@color/colorPrimary"
+                android:pathData="M8.752,16a7.248,7.2207 0,1 0,14.4959 0a7.248,7.2207 0,1 0,-14.4959 0z"
+                android:strokeWidth="1"
+                android:strokeColor="@color/colorPrimary" />
+        </group>
+
+        <group
+            android:name="ele_7"
+            android:pivotX="16"
+            android:pivotY="16">
+            <path
+                android:fillColor="@color/colorPrimary"
+                android:pathData="M8.752,16a7.248,7.2207 0,1 0,14.4959 0a7.248,7.2207 0,1 0,-14.4959 0z"
+                android:strokeWidth="1"
+                android:strokeColor="@color/colorPrimary" />
+        </group>
+
+        <group
+            android:name="ele_8"
+            android:pivotX="16"
+            android:pivotY="16">
+            <path
+                android:fillColor="@color/colorPrimary"
+                android:pathData="M8.752,16a7.248,7.2207 0,1 0,14.4959 0a7.248,7.2207 0,1 0,-14.4959 0z"
+                android:strokeWidth="1"
+                android:strokeColor="@color/colorPrimary" />
+        </group>
+    </group>
+</vector>

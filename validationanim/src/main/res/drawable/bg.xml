@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/tick"
+        android:drawable="@drawable/ic_tick"
+        app:state_tick="true" />
+    <item
+        android:id="@+id/cross"
+        android:drawable="@drawable/ic_cross"
+        app:state_cross="true" />
+    <item
+        android:id="@+id/balls"
+        android:drawable="@drawable/ic_method_draw_image"
+        app:state_typing="true" />
+    <item
+        android:id="@+id/reset"
+        android:drawable="@android:color/transparent" />
+
+    <transition
+        android:drawable="@drawable/avd_tick"
+        android:fromId="@id/balls"
+        android:toId="@id/tick" />
+    <transition
+        android:drawable="@drawable/avd_tick"
+        android:fromId="@id/reset"
+        android:toId="@id/tick" />
+    <transition
+        android:drawable="@drawable/avd_tick"
+        android:fromId="@id/cross"
+        android:toId="@id/tick" />
+
+    <transition
+        android:drawable="@drawable/avd_cross"
+        android:fromId="@+id/balls"
+        android:toId="@+id/cross" />
+    <transition
+        android:drawable="@drawable/avd_cross"
+        android:fromId="@+id/reset"
+        android:toId="@+id/cross" />
+    <transition
+        android:drawable="@drawable/avd_cross"
+        android:fromId="@+id/tick"
+        android:toId="@+id/cross" />
+
+    <transition
+        android:drawable="@drawable/avd_anim"
+        android:fromId="@id/reset"
+        android:toId="@id/balls" />
+
+    <transition
+        android:drawable="@drawable/avd_anim"
+        android:fromId="@id/tick"
+        android:toId="@id/balls" />
+
+    <transition
+        android:drawable="@drawable/avd_anim"
+        android:fromId="@id/cross"
+        android:toId="@id/balls" />
+
+
+</animated-selector>

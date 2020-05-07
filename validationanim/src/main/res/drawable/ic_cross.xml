@@ -1,0 +1,32 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="32"
+    android:viewportHeight="32">
+    <group android:name="bgcross"
+        android:pivotX="16"
+        android:pivotY="16">
+        <path
+            android:fillColor="#000000"
+            android:pathData="M1.5263,16a14.386,14.1228 0,1 0,28.7719 0a14.386,14.1228 0,1 0,-28.7719 0z"
+            android:strokeWidth="1.5"
+            android:strokeColor="#000" />
+    </group>
+    <group
+        android:pivotX="16"
+        android:pivotY="16"
+        android:name="cross">
+      <path
+          android:name="cross_1"
+          android:pathData="M25,8L7.8421,24.8596"
+          android:strokeWidth="1.5"
+          android:fillColor="#ffffff"
+          android:strokeColor="#ffffff" />
+      <path
+          android:name="cross_2"
+          android:pathData="M25,25L8,8"
+          android:strokeWidth="1.5"
+          android:fillColor="#ffffff"
+          android:strokeColor="#ffffff" />
+    </group>
+</vector>

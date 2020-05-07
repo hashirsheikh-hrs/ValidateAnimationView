@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_tick">
+    <target
+        android:name="bg"
+        android:animation="@animator/scale" />
+    <target
+        android:name="tick"
+        android:animation="@animator/scale" />
+    <target
+        android:name="tick_1"
+        android:animation="@animator/trim_path_end" />
+    <target
+        android:name="tick_2"
+        android:animation="@animator/trim_path_end" />
+</animated-vector>

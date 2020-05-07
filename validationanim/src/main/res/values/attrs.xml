@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ValidationAnimView">
+        <attr name="state_typing" format="boolean" />
+        <attr name="state_tick" format="boolean" />
+        <attr name="state_cross" format="boolean" />
+        <attr name="state_clear" format="boolean" />
+        <attr name="editTextRef" format="reference" />
+        <attr name="patternToMatch" format="string" />
+    </declare-styleable>
+</resources>

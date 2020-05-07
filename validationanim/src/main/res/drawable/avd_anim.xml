@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector android:drawable="@drawable/ic_method_draw_image"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <target
+        android:name="elements"
+        android:animation="@animator/scale" />
+    <target
+        android:animation="@animator/rotate_1"
+        android:name="ele_1"/>
+    <target
+        android:animation="@animator/rotate_2"
+        android:name="ele_2"/>
+    <target
+        android:animation="@animator/rotate_3"
+        android:name="ele_3"/>
+    <target
+        android:animation="@animator/rotate_4"
+        android:name="ele_4"/>
+    <target
+        android:animation="@animator/rotate_5"
+        android:name="ele_5"/>
+    <target
+        android:animation="@animator/rotate_6"
+        android:name="ele_6"/>
+    <target
+        android:animation="@animator/rotate_7"
+        android:name="ele_7"/>
+    <target
+        android:animation="@animator/rotate_8"
+        android:name="ele_8"/>
+</animated-vector>
