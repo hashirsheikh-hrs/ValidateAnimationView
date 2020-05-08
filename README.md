@@ -59,8 +59,12 @@ Run the sample for better idea.
 
 ## Second way to implement.
 Second way you can also bind edittext and patterns from the code. It has a function ```setUpWithEditText```, which accept edittext and regex string as a parameter.
+v0.1alpha
 ```java
- binding.validAnimView.setUpWithEditText(binding.inputField1, Patterns.EMAIL_ADDRESS.toString())
+ binding.validAnimView.setUpWithEditText(binding.inputField1)
+ binding.validAnimView.registerPattern(Patterns.EMAIL_ADDRESS.toString()) 
+ or 
+ binding.validAnimView.registerPredicate {Patterns.EMAIL_ADDRESS.matcher(it).matches()}
 ```
 ## Manage by your own.
 you can also handle animation by setting property by using following functions -
