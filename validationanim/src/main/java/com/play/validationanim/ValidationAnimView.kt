@@ -2,15 +2,14 @@ package com.play.validationanim
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
 import android.widget.EditText
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat.setBackground
 import androidx.core.widget.addTextChangedListener
-import com.android.validationanim.Util.checkForValid
-import java.lang.IllegalStateException
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
+import com.play.validationanim.Util.checkForValid
 
 
 class ValidationAnimView : View {
@@ -26,7 +25,7 @@ class ValidationAnimView : View {
     private var lastState = STATE.CLEAR
 
     var typingState = false
-       set(value) {
+        set(value) {
             refreshDrawableState()
             field = value
         }
@@ -50,6 +49,7 @@ class ValidationAnimView : View {
     private var textViewId: Int = -1
     private var editText: EditText? = null
     private var regexPattern: String? = null
+    private var predicate: ((String) -> Boolean)? = null
 
     val typingRunnable = Runnable {
         if (System.currentTimeMillis() > (lastEditText + delay - 500)) {
@@ -77,34 +77,53 @@ class ValidationAnimView : View {
     }
 
     private fun init(attrs: AttributeSet?) {
-        if(isInEditMode){
+        if (isInEditMode) {
             return
         }
         val t: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.ValidationAnimView)
         textViewId = t.getResourceId(R.styleable.ValidationAnimView_editTextRef, NO_ID)
-        regexPattern = t.getString(R.styleable.ValidationAnimView_patternToMatch)?:""
+        regexPattern = t.getString(R.styleable.ValidationAnimView_patternToMatch) ?: null
         t.recycle()
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         val sdk = android.os.Build.VERSION.SDK_INT
-        if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+        if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
             setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg))
         } else {
             background = ContextCompat.getDrawable(context, R.drawable.bg)
         }
-        if (editText == null) {
+        if (editText == null && textViewId != -1) {
             rootView?.findViewById<View>(textViewId)?.let {
-                if (it is EditText && regexPattern?.isNotEmpty() == true) {
-                    setUpWithEditText(it, regexPattern!!)
-                } else throw IllegalStateException("Required EditText as a reference of key 'editTextRef'")
+                if (it is EditText) setUpWithEditText(it)
+                if (regexPattern != null) registerPattern(regexPattern!!)
             }
         }
     }
 
-    fun setUpWithEditText(editText: EditText, matchPatterns: String) {
-        regexPattern = matchPatterns
+    /**
+     * Register edittext on behalf of this view
+     * @param editText EditText
+     */
+    fun setUpWithEditText(editText: EditText) {
+
+        editText.doAfterTextChanged {
+            val s = it ?: return@doAfterTextChanged
+            if (s.isNotEmpty()) {
+                lastEditText = System.currentTimeMillis()
+                typedInput = s.toString()
+                typing()
+                postDelayed(typingRunnable, delay)
+            } else {
+                clear()
+            }
+        }
+
+        editText.doOnTextChanged { _, _, _, _ ->
+            removeCallbacks(typingRunnable)
+        }
+/*
         editText.addTextChangedListener(
             onTextChanged = { _, _, _, _ ->
                 removeCallbacks(typingRunnable)
@@ -119,10 +138,29 @@ class ValidationAnimView : View {
             } else {
                 clear()
             }
-        }
+        }*/
+    }
+
+    /**
+     * this will reset the predicate
+     * @param regex String
+     */
+    fun registerPattern(regex: String) {
+        this.regexPattern = regex
+        predicate = null
+    }
+
+    /**
+     * this will reset the pattern
+     * @param predicate Predicate<String>
+     */
+    fun registerPredicate(predicate: (String) -> Boolean) {
+        this.predicate = predicate
+        this.regexPattern = null
     }
 
     private fun typing() {
+        listener?.onStateChange(STATE.TYPING)
         if (lastState == STATE.TYPING) return
         lastState = STATE.TYPING
         changeValues(typingState = true)
@@ -142,15 +180,22 @@ class ValidationAnimView : View {
 
     private fun performAction() {
         if (typedInput.isNotBlank()) {
-
-            if (checkForValid(typedInput, regexPattern!!)) {
-                if (lastState == STATE.TICK) return
-                lastState = STATE.TICK
-                changeValues(validState = true)
-            } else {
-                if (lastState == STATE.CROSS) return
-                lastState = STATE.CROSS
-                changeValues(invalidState = true)
+            with(typedInput.trim()) {
+                if ((regexPattern != null && checkForValid(
+                        this,
+                        regexPattern!!
+                    )) || (predicate != null && predicate?.invoke(this) == true)
+                ) {
+                    listener?.onStateChange(STATE.VALID)
+                    if (lastState == STATE.VALID) return
+                    lastState = STATE.VALID
+                    changeValues(validState = true)
+                } else {
+                    listener?.onStateChange(STATE.INVALID)
+                    if (lastState == STATE.INVALID) return
+                    lastState = STATE.INVALID
+                    changeValues(invalidState = true)
+                }
             }
         } else {
             clear()
@@ -158,16 +203,10 @@ class ValidationAnimView : View {
     }
 
     private fun clear() {
+        listener?.onStateChange(STATE.CLEAR)
         if (lastState == STATE.CLEAR) return
         lastState = STATE.CLEAR
         changeValues(clearState = true)
-    }
-
-    private enum class STATE {
-        TYPING,
-        TICK,
-        CROSS,
-        CLEAR
     }
 
     // Constructors, view loading etc...
@@ -186,6 +225,11 @@ class ValidationAnimView : View {
             mergeDrawableStates(drawableState, STATE_CLEAR)
         }
         return drawableState
+    }
+
+    private var listener: StateChangeListener? = null
+    fun addListener(listener: StateChangeListener?) {
+        this.listener = listener
     }
 
 }

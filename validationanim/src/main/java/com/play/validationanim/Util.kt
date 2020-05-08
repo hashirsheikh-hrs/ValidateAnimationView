@@ -1,9 +1,16 @@
-package com.android.validationanim
+package com.play.validationanim
+
+import java.lang.Exception
 
 object Util {
 
     fun checkForValid(text: String, regEx: String): Boolean {
-        return text.matches(Regex(regEx))
+        return try {
+            text.matches(Regex(regEx))
+        }catch (ex: Exception){
+            ex.printStackTrace()
+            false
+        }
     }
 
 }

@@ -8,10 +8,10 @@
         android:pivotX="16"
         android:pivotY="16">
         <path
-            android:fillColor="#000000"
+            android:fillColor="@color/colorPrimary"
             android:pathData="M1.5263,16a14.386,14.1228 0,1 0,28.7719 0a14.386,14.1228 0,1 0,-28.7719 0z"
             android:strokeWidth="1.5"
-            android:strokeColor="#000" />
+            android:strokeColor="@color/colorPrimary" />
     </group>
     <group
         android:name="tick"
