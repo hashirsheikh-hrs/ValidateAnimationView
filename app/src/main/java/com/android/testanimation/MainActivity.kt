@@ -13,7 +13,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //2nd manager by code
-//        binding.validAnimView.setUpWithEditText(binding.inputField1, Patterns.EMAIL_ADDRESS.toString())
+        binding.validAnimView.setUpWithEditText(binding.inputField1)
+        binding.validAnimView.registerPattern(Patterns.EMAIL_ADDRESS.toString())
+//        or
+//        binding.validAnimView.registerPredicate {Patterns.EMAIL_ADDRESS.matcher(it).matches()}
 
         //3rd manage by your own
 //        binding.validAnimView.typingState = true //when show a typing animation
