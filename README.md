@@ -2,6 +2,9 @@
 
 A sample typing animation with validation regex check.
 
+## demo
+![](https://github.com/hashirsheikh-hrs/ValidateAnimationView/blob/master/gif/ezgif-7-c8ad2d91b188.gif)
+
 ## Installation
 
 Add Validateionanim library into your project module, so you have below line into your project's build. gradle file.
